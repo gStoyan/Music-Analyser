@@ -4,17 +4,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MusicAnalyser.Infrastructure.FileExtensions.Implementations
+namespace MusicAnalyser.Infrastructure.NotesExtensions.Implementations
 {
-    public class FileParser : IFileParser
+    public class NotesCreator : INotesCreator
     {
+        private INotesTimeCalculator noteTimeCalculator;
+
+        public NotesCreator()
+        {
+            this.noteTimeCalculator = new NotesTimeCalculator();
+        }
         public List<Note> ParseCsv(List<string> content)
         {
             List<string> notesOnNames = new List<string>();
             List<string> notesOffNames = new List<string>();
             List<int> notesOnTime = new List<int>();
             List<int> notesOffTime = new List<int>();
-            content.RemoveAll(s => string.IsNullOrWhiteSpace(s));
+            content.RemoveAll(s => string.IsNullOrWhiteSpace(s)); //Remove White Spaces and new Lines from csv file
             foreach (var line in content)
             {               
                 var splitLine = line.Split(',');
@@ -27,13 +33,13 @@ namespace MusicAnalyser.Infrastructure.FileExtensions.Implementations
                 }
                 if (noteState == "Note On")
                 {
-                    int miliseconds = ConvertToMiliSeconds(time);
+                    int miliseconds = this.noteTimeCalculator.ConvertToMiliSeconds(time);
                     notesOnNames.Add(noteName);
                     notesOnTime.Add(miliseconds);
                 }
                 if (noteState == "Note Off")
                 {
-                    int miliseconds = ConvertToMiliSeconds(time);
+                    int miliseconds = this.noteTimeCalculator.ConvertToMiliSeconds(time);
                     notesOffNames.Add(noteName);
                     notesOffTime.Add(miliseconds);
                 }
@@ -70,17 +76,6 @@ namespace MusicAnalyser.Infrastructure.FileExtensions.Implementations
                 });
             }
             return notes;
-        }
-
-        private int ConvertToMiliSeconds(string time)
-        {
-            var timeSplit = time.Split(':');
-            var hours = int.Parse(timeSplit[0]);
-            var minutes = int.Parse(timeSplit[1]);
-            var seconds = int.Parse(timeSplit[2]);
-            var miliseconds = int.Parse(timeSplit[3]);
-
-            return miliseconds + seconds * 1000 + minutes * 60000 + hours * 3600000;
         }
     }
 }

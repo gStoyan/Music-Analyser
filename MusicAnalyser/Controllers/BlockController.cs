@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using MusicAnalyser.Infrastructure.BlockExtensions;
 using MusicAnalyser.Infrastructure.BlockExtensions.Implementations;
-using MusicAnalyser.Infrastructure.FileExtensions;
-using MusicAnalyser.Infrastructure.FileExtensions.Implementations;
+using MusicAnalyser.Infrastructure.NotesExtensions;
+using MusicAnalyser.Infrastructure.NotesExtensions.Implementations;
 using MusicAnalyser.Models;
 using System;
 using System.Collections.Generic;
@@ -18,11 +18,11 @@ namespace MusicAnalyser.Controllers
     {
         private string path = Path.Combine(Environment.CurrentDirectory, @"../MusicAnalyser.Tests\Extensions\TestFiles\test.csv");
 
-        private IFileParser fileParser;
+        private INotesCreator notesCreator;
         private IBlockCreator blockCreator;
         public BlockController()
         {
-            this.fileParser = new FileParser();
+            this.notesCreator = new NotesCreator();
             this.blockCreator = new BlockCreator();
         }
 
@@ -30,7 +30,7 @@ namespace MusicAnalyser.Controllers
         public IEnumerable<Block> Get()
         {
             string[] lines = System.IO.File.ReadAllLines(this.path);
-            var notes = fileParser.ParseCsv(lines.ToList());
+            var notes = notesCreator.ParseCsv(lines.ToList());
 
             return this.blockCreator.CreateBlocks(notes);
         }

@@ -1,34 +1,34 @@
 ﻿using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MusicAnalyser.Infrastructure.FileExtensions;
-using MusicAnalyser.Infrastructure.FileExtensions.Implementations;
+using MusicAnalyser.Infrastructure.NotesExtensions;
+using MusicAnalyser.Infrastructure.NotesExtensions.Implementations;
 using MusicAnalyser.Tests.Extensions;
 using System;
 using System.IO;
 using System.Linq;
 using Xunit;
 
-namespace MusicAnalyser.Tests.FileTests
+namespace MusicAnalyser.Tests.NotesTests
 {
-    public class FileParserTests
+    public class NotesCreatorTests
     {
         private string path = Path.Combine(Environment.CurrentDirectory, @"../../../Extensions\TestFiles\EineKleineNachtmusik.csv");
 
-        private IFileParser fileParser;
+        private INotesCreator notesCreator;
 
-        public FileParserTests()
+        public NotesCreatorTests()
         {
-            this.fileParser = new FileParser();
+            this.notesCreator = new NotesCreator();
         }
 
         [Fact]
-        public void FileParser_ReturnsNotes()
+        public void NotesCreator_ReturnsNotes()
         {
             //Arrange
             var fileReader = new FileReader();
             //Act
             var lines = fileReader.ReadFile(this.path);
-            var notes = fileParser.ParseCsv(lines);
+            var notes = notesCreator.ParseCsv(lines);
             //Assert           
             notes.Count.Should().BeGreaterThan(0);
         }

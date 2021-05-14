@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MusicAnalyser.Infrastructure.FileExtensions;
-using MusicAnalyser.Infrastructure.FileExtensions.Implementations;
+using MusicAnalyser.Infrastructure.NotesExtensions;
+using MusicAnalyser.Infrastructure.NotesExtensions.Implementations;
 using MusicAnalyser.Models;
 using System;
 using System.Collections.Generic;
@@ -18,10 +18,10 @@ namespace MusicAnalyser.Controllers
     {
         private string path = Path.Combine(Environment.CurrentDirectory, @"../MusicAnalyser.Tests\Extensions\TestFiles\test.csv");
 
-        private IFileParser fileParser;
+        private INotesCreator fileParser;
         public NotesController()
         {
-            this.fileParser = new FileParser();
+            this.fileParser = new NotesCreator();
         }
 
         // GET: api/<NotesController>

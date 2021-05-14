@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MusicAnalyser.Infrastructure.FileExtensions
+namespace MusicAnalyser.Infrastructure.NotesExtensions
 {
-    public interface IFileParser
+    public interface INotesCreator
     {
         List<Note> ParseCsv(List<string> content);
     }

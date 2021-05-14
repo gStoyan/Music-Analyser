@@ -3,8 +3,8 @@ using FluentAssertions;
 using MusicAnalyser.Infrastructure;
 using MusicAnalyser.Infrastructure.BlockExtensions;
 using MusicAnalyser.Infrastructure.BlockExtensions.Implementations;
-using MusicAnalyser.Infrastructure.FileExtensions;
-using MusicAnalyser.Infrastructure.FileExtensions.Implementations;
+using MusicAnalyser.Infrastructure.NotesExtensions;
+using MusicAnalyser.Infrastructure.NotesExtensions.Implementations;
 using MusicAnalyser.Models;
 using MusicAnalyser.Tests.Extensions;
 using System;
@@ -19,11 +19,11 @@ namespace MusicAnalyser.Tests.BlocksTests
         private string path = Path.Combine(Environment.CurrentDirectory, @"../../../Extensions\TestFiles\EineKleineNachtmusik.csv");
 
         private IBlockCreator blockCreator;
-        private IFileParser fileParser;
+        private INotesCreator notesCreator;
 
         public BlockCreatorTests()
         {
-            this.fileParser = new FileParser();
+            this.notesCreator = new NotesCreator();
             this.blockCreator = new BlockCreator();
         }
 
