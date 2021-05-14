@@ -1,0 +1,13 @@
+
+<br>
+<form [formGroup] = "notesForm" (ngSubmit) = create()>
+    <div class="form-group">        
+        <textarea style="width: 75%; height: 200px; " pInputTextarea formControlName= "notes"></textarea>
+    </div>
+    <button pButton type="submit" class="btn btn-danger">Submit</button>
+</form>
+
+<div *ngIf="isClicked"> 
+<button pButton type="button" label="List" routerLink="List"></button>
+<button pButton type="button" label="Draw" routerLink="/Draw"></button>
+</div>

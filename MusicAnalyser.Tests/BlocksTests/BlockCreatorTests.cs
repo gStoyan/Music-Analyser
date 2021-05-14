@@ -98,7 +98,7 @@ namespace MusicAnalyser.Tests.BlocksTests
             //Act
             var blocks = this.blockCreator.CreateBlocks(notes);
             //Assert
-            blocks[0].Color.Should().Be(Constants.DarkGrey);
+            blocks[0].Color.Should().Be(Constants.LightGrey);
         }
         [Fact]
         public void BlockCreator_SmokeBlock()
@@ -122,7 +122,7 @@ namespace MusicAnalyser.Tests.BlocksTests
             //Act
             var blocks = this.blockCreator.CreateBlocks(notes);
             //Assert
-            blocks[0].Color.Should().Be(Constants.SmokeGrey);
+            blocks[0].Color.Should().Be(Constants.DarkGrey);
         }
     }
 }

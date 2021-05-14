@@ -1,0 +1,23 @@
+<p-dataView [value]="Notes" [paginator]="true" [rows]="10">
+    <ng-template let-note pTemplate="listItem">
+        <div>
+            {{note.id}} - {{note.name}} - {{note.value}} {{note.time}}ms pause: {{note.pause}}ms
+        </div>
+    </ng-template>
+    
+    <ng-template let-note pTemplate="gridItem">
+        <div class="p-col-12 p-md-3">
+            {{note.name}}
+        </div>
+    </ng-template>
+    <ng-template pTemplate="paginatorleft" let-state>
+        {{state.first}}
+        <button type="button" pButton icon="pi-refresh"></button>
+    </ng-template>
+    <ng-template pTemplate="paginatorright">
+        <button type="button" pButton icon="pi-cloud-upload"></button>
+    </ng-template>
+    <ng-template let-item pTemplate="paginatordropdownitem">
+        {{item.value}} - per page
+    </ng-template>
+</p-dataView>
