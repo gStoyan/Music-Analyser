@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicAnalyser", "MusicAnalyser\MusicAnalyser.csproj", "{AC20404D-7427-409E-A208-BC3803E7187E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicAnalyser.Tests", "MusicAnalyser.Tests\MusicAnalyser.Tests.csproj", "{519C1DC0-1FC9-48F0-A1A4-9FFFFAABC0DA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AC20404D-7427-409E-A208-BC3803E7187E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC20404D-7427-409E-A208-BC3803E7187E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC20404D-7427-409E-A208-BC3803E7187E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC20404D-7427-409E-A208-BC3803E7187E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{519C1DC0-1FC9-48F0-A1A4-9FFFFAABC0DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{519C1DC0-1FC9-48F0-A1A4-9FFFFAABC0DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{519C1DC0-1FC9-48F0-A1A4-9FFFFAABC0DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{519C1DC0-1FC9-48F0-A1A4-9FFFFAABC0DA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7B56BF72-17CF-4187-AA3B-8FF53C4D2069}
+	EndGlobalSection
+EndGlobal
