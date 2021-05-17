@@ -1,0 +1,20 @@
+version: '3.7'
+services: 
+    apiservice: 
+        container_name: music_dot 
+        build: 
+            context: ./
+            dockerfile: Dockerfile
+        ports: 
+            - "44371:44371"
+    uiservice: 
+        container_name: ktcui 
+        build: 
+            context: ./
+            dockerfile: Dockerfile.ang
+        ports:
+            - "5006:80"
+        depends_on: 
+            - apiservice
+
+         

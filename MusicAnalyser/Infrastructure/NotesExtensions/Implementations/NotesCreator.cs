@@ -44,37 +44,7 @@ namespace MusicAnalyser.Infrastructure.NotesExtensions.Implementations
                     notesOffTime.Add(miliseconds);
                 }
             }
-            var notes = GetNotesWithTime(notesOnNames,notesOnTime,notesOffTime);
-            return notes;
-        }
-
-
-        private List<Note> GetNotesWithTime(List<string> noteNames, List<int> notesOnTime, List<int> notesOffTime)
-        {
-            List<Note> notes = new List<Note>();
-            List<int> notesTime = new List<int>();
-            int pause = 0;
-            for (int i = 0; i < notesOnTime.Count; i++)
-            {
-                notesTime.Add(notesOffTime[i] - notesOnTime[i]);
-                           
-            }
-
-            for (int i = 0; i < noteNames.Count; i++)
-            {
-                if (i + 1 < notesOnTime.Count)
-                {
-                    pause = notesOnTime[i + 1] - notesOffTime[i];
-                }
-                notes.Add(new Note
-                {
-                    Id = i+1,
-                    Name = noteNames[i].Split('-')[1],
-                    Tone = int.Parse(noteNames[i].Split('-')[0]),
-                    Time = notesTime[i],
-                    Pause = pause
-                });
-            }
+            var notes = this.noteTimeCalculator.GetNotesWithTime(notesOnNames,notesOnTime,notesOffTime);
             return notes;
         }
     }

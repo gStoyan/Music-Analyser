@@ -5,6 +5,12 @@ namespace MusicAnalyser.Infrastructure.BlockExtensions.Implementations
 {
     public class BlockCreator : IBlockCreator
     {
+        private IBlockHelper blockHelper;
+
+        public BlockCreator()
+        {
+            this.blockHelper = new BlockHelper();
+        }
         public List<Block> CreateBlocks(List<Note> notes)
         {
             int yStart = 30;
@@ -35,8 +41,8 @@ namespace MusicAnalyser.Infrastructure.BlockExtensions.Implementations
                 int prevTone = toneValues[i - 1];
                 int prevTime = timeValues[i - 1];
                 string name = names[i];
-                color = GetColor(currentTone, currentTime, prevTone, prevTime);
-                var y = GetYAxis(color, yStart,yEnd);
+                color = this.blockHelper.GetColor(currentTone, currentTime, prevTone, prevTime);
+                var y = this.blockHelper.GetYAxis(color, yStart,yEnd);
                 blocks.Add(new Block
                 {
                     Name = name,
@@ -50,55 +56,6 @@ namespace MusicAnalyser.Infrastructure.BlockExtensions.Implementations
                 yEnd = y.Item2;
             }
             return blocks;
-        }
-
-        private Tuple<int, int> GetYAxis(string color,int yStart, int yEnd)
-        {
-            switch (color)
-            {
-                case Constants.LightGrey: //Dark Grey
-                    yStart += 5;
-                    yEnd += 5;
-                    if (yStart == 30)
-                    {
-                        yStart += 5;
-                        yEnd += 5;
-                    }
-                    break;
-                case Constants.DarkGrey: //Light Grey
-                    yStart -= 5;
-                    yEnd -= 5;
-                    if (yStart == 30)
-                    {
-                        yStart -= 5;
-                        yEnd -= 5;
-                    }
-                    break;
-                case Constants.White:
-                    yStart =30;
-                    yEnd =60;
-                    break;
-                default:
-                    break;
-            }
-            return Tuple.Create(yStart, yEnd);
-        }
-
-        private string GetColor(int currentTone, int currentTime, int prevTone, int prevTime)
-        {
-            if (prevTime == currentTime || prevTime - currentTime ==1 ||currentTime - prevTime ==1 )
-            {
-                if (currentTone>prevTone)
-                {
-                    return Constants.LightGrey; 
-                }
-
-                if (currentTone< prevTone)
-                {
-                    return Constants.DarkGrey; 
-                }
-            }
-            return Constants.White;            
         }
     }
 }

@@ -1,0 +1,21 @@
+### Build 
+FROM node:10-alpine as build-step
+
+RUN mkdir -p /app
+
+WORKDIR /app
+
+COPY ./Angular/music-analyser/package.json /app 
+
+RUN npm install 
+
+COPY ./Angular/music-analyser/ /app
+
+RUN ls 
+RUN npm run build --prod 
+# Project is built in folder dist
+
+### Deploy
+FROM nginx:1.17.1-alpine 
+COPY --from=build-step /app/dist/music-analyser usr/share/nginx/html 
+EXPOSE 80 
