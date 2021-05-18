@@ -16,7 +16,7 @@ namespace MusicAnalyser.Controllers
     [ApiController]
     public class BlockController : ControllerBase
     {
-        private string path = Path.Combine(Environment.CurrentDirectory, @"../MusicAnalyser.Tests\Extensions\TestFiles\test.csv");
+        private string path = Path.Combine(Environment.CurrentDirectory, @"../MusicAnalyser.Tests\Extensions\TestFiles\notes.csv");
 
         private INotesCreator notesCreator;
         private IBlockCreator blockCreator;

@@ -22,7 +22,7 @@ namespace MusicAnalyser.Controllers
     [ApiController]
     public class NotesController : ControllerBase
     {
-        private string path = Path.Combine(Environment.CurrentDirectory, @"../MusicAnalyser.Tests\Extensions\TestFiles\test.csv");
+        private string path = Path.Combine(Environment.CurrentDirectory, @"../MusicAnalyser.Tests\Extensions\TestFiles\notes.csv");
 
         private ITextParser textParser;
         private INotesCreator notesCreator;

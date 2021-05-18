@@ -8,8 +8,24 @@ namespace MusicAnalyser.Infrastructure.NotesExtensions.Implementations
 {
     public class NotesTimeCalculator : INotesTimeCalculator
     {
+        public List<Note> CalculatePause(List<Note> notes)
+        {
+            for (int i = 0; i < notes.Count; i++)
+            {
+                if (i +1<notes.Count)
+                {
+                    int currentTime = notes[i].Time;
+                    int nextTime = notes[i + 1].Time;
+                    int currentLength = notes[i].Length;
+                    notes[i].Pause = nextTime - (currentLength + currentTime );
+                }
+            }
+            return notes;
+        }
+
         public int ConvertToMiliSeconds(string time)
         {
+            // Format : 0:0:0:0
             var timeSplit = time.Split(':');
             var hours = int.Parse(timeSplit[0]);
             var minutes = int.Parse(timeSplit[1]);

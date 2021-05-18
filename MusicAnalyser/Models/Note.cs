@@ -9,6 +9,8 @@ namespace MusicAnalyser.Models
 
         public int Tone { get; set; }
 
+        public int Length { get; set; }
+
         public int Time { get; set; }
 
         public int Pause { get; set; }

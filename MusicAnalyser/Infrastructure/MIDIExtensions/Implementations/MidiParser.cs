@@ -8,12 +8,12 @@ namespace MusicAnalyser.Infrastructure.MIDIExtensions.Implementations
 {
     public class MidiParser : IMidiParser
     {
-        private string midiPath = Path.Combine(Environment.CurrentDirectory, @"../MusicAnalyser.Tests\Extensions\TestFiles\testing.mid");
-        private string txtPath = Path.Combine(Environment.CurrentDirectory, @"../MusicAnalyser.Tests\Extensions\TestFiles\test.text");
+        private string midiPath = Path.Combine(Environment.CurrentDirectory, @"../MusicAnalyser.Tests\Extensions\TestFiles\song.mid");
+        private string txtPath = Path.Combine(Environment.CurrentDirectory, @"../MusicAnalyser.Tests\Extensions\TestFiles\notes.csv");
 
         public void CreateTxt()
         {
-            file = MidiFile.Read(midiPath);
+            MidiFile file = MidiFile.Read(midiPath);
             IEnumerable<Note> notes = file.GetNotes();
             TempoMap tempoMap = file.GetTempoMap();
             foreach (var note in notes)
@@ -27,6 +27,9 @@ namespace MusicAnalyser.Infrastructure.MIDIExtensions.Implementations
                 {
                     MetricTimeSpan metricTime = note.TimeAs<MetricTimeSpan>(tempoMap);
                     MetricTimeSpan metricLength = note.LengthAs<MetricTimeSpan>(tempoMap);
+                    var name = note.NoteName;
+                    var value = note.NoteNumber;
+                    newTask.WriteLine(metricTime + "," + metricLength + "," + name + "," + value);
                 }
             }
         }

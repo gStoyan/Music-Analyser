@@ -12,7 +12,7 @@ namespace MusicAnalyser.Tests.NotesTests
 {
     public class NotesCreatorTests
     {
-        private string path = Path.Combine(Environment.CurrentDirectory, @"../../../Extensions\TestFiles\EineKleineNachtmusik.csv");
+        private string path = Path.Combine(Environment.CurrentDirectory, @"../../../Extensions\TestFiles\notes.csv");
 
         private INotesCreator notesCreator;
 

@@ -16,35 +16,28 @@ namespace MusicAnalyser.Infrastructure.NotesExtensions.Implementations
         }
         public List<Note> CreateNotes(List<string> content)
         {
-            List<string> notesOnNames = new List<string>();
-            List<string> notesOffNames = new List<string>();
-            List<int> notesOnTime = new List<int>();
-            List<int> notesOffTime = new List<int>();
+            int id = 1;
+            List<Note> notes = new List<Note>();
             content.RemoveAll(s => string.IsNullOrWhiteSpace(s)); //Remove White Spaces and new Lines from csv file
             foreach (var line in content)
-            {               
+            {
+                //Split Line {time},{length,{name},{value}
                 var splitLine = line.Split(',');
-                string noteState = splitLine[4].Trim();
-                string time = splitLine[2];
-                string noteName = splitLine[6];
-                if (noteState != "Note On" && noteState != "Note Off")
+                int time = this.noteTimeCalculator.ConvertToMiliSeconds(splitLine[0]);
+                int length = this.noteTimeCalculator.ConvertToMiliSeconds(splitLine[1]);
+                string noteName = splitLine[2];
+                int tone = int.Parse(splitLine[3]);
+                notes.Add(new Note
                 {
-                    continue;
-                }
-                if (noteState == "Note On")
-                {
-                    int miliseconds = this.noteTimeCalculator.ConvertToMiliSeconds(time);
-                    notesOnNames.Add(noteName);
-                    notesOnTime.Add(miliseconds);
-                }
-                if (noteState == "Note Off")
-                {
-                    int miliseconds = this.noteTimeCalculator.ConvertToMiliSeconds(time);
-                    notesOffNames.Add(noteName);
-                    notesOffTime.Add(miliseconds);
-                }
+                    Id = ++id,
+                    Name = noteName,
+                    Time = time,
+                    Length = length,
+                    Tone = tone,
+                    Pause = 0
+                });
             }
-            var notes = this.noteTimeCalculator.GetNotesWithTime(notesOnNames,notesOnTime,notesOffTime);
+            notes = this.noteTimeCalculator.CalculatePause(notes);
             return notes;
         }
     }

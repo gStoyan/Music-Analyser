@@ -8,5 +8,7 @@ namespace MusicAnalyser.Infrastructure.NotesExtensions
     {
         int ConvertToMiliSeconds(string time);
         List<Note> GetNotesWithTime(List<string> noteNames, List<int> notesOnTime, List<int> notesOffTime);
+
+        List<Note> CalculatePause(List<Note> notes);
     }
 }

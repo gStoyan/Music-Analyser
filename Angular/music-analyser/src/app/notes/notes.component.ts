@@ -20,11 +20,8 @@ export class NotesComponent implements OnInit {
 
   ngOnInit(): void {
     
-  }
-  
-  create(){    
+  }  
+  Clicked(){    
     this.isClicked = true;
-    this.model = new Text(this.notesForm.get('notes').value)  
-    this.noteServices.PostNotesModel(this.model)
   }
 }

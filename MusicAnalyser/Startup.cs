@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Session;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Music.Analyser.MIDIReader;
 using MusicAnalyser.Infrastructure;
 using MusicAnalyser.Infrastructure.Session;
 using System;
@@ -18,8 +17,6 @@ namespace MusicAnalyser
     {
         public Startup(IConfiguration configuration)
         {
-            var midiParser = new MIDIParser();
-            midiParser.Run();
             Configuration = configuration;
         }
 

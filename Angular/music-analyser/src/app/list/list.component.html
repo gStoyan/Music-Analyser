@@ -1,7 +1,7 @@
 <p-dataView [value]="Notes" [paginator]="true" [rows]="10">
     <ng-template let-note pTemplate="listItem">
         <div>
-            {{note.id}} - {{note.name}} - {{note.value}} {{note.time}}ms pause: {{note.pause}}ms
+            {{note.id}} - {{note.name}} - {{note.tone}} {{note.length}}ms pause: {{note.pause}}ms time: {{note.time}}
         </div>
     </ng-template>
     

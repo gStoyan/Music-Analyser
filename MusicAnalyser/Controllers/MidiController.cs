@@ -15,7 +15,7 @@ namespace MusicAnalyser.Controllers
     [ApiController]
     public class MidiController : ControllerBase
     {
-        private string path = Path.Combine(Environment.CurrentDirectory, @"../MusicAnalyser.Tests\Extensions\TestFiles\testing1.mid");
+        private string path = Path.Combine(Environment.CurrentDirectory, @"../MusicAnalyser.Tests\Extensions\TestFiles\song.mid");
         private readonly IWebHostEnvironment hostingEnvironment;
         private IMidiParser midiParser;
 
