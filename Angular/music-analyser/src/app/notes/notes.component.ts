@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import{FormGroup,FormControl} from "@angular/forms";
-import{NotesModel} from "../models/NotesModel"
+import{Text} from "../models/TextModel"
 import {ActivatedRoute} from '@angular/router'
 import {NotesService} from '../services/notes.service'
 
@@ -11,7 +11,7 @@ import {NotesService} from '../services/notes.service'
   styleUrls: ['./notes.component.css']
 })
 export class NotesComponent implements OnInit {
-  model: NotesModel
+  model: Text
   isClicked = false;
   notesForm = new FormGroup({
     'notes': new FormControl('')
@@ -24,7 +24,7 @@ export class NotesComponent implements OnInit {
   
   create(){    
     this.isClicked = true;
-    this.model = new NotesModel(this.notesForm.get('notes').value)  
+    this.model = new Text(this.notesForm.get('notes').value)  
     this.noteServices.PostNotesModel(this.model)
   }
 }

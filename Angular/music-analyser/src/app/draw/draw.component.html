@@ -1,2 +1,20 @@
 <div id="chartContainer" style="height: 500px; width: 100%; margin-left:auto;margin-right:auto;"></div>
-AS
+<button id="playPause">Play/ Pause</button> 
+<script>
+    
+var flag = true;
+var interval;
+var updateInterval = 100;
+
+$('#playPause').click(function() {
+         
+	if(flag) {	
+		$(this).html('Pause');
+		interval = setInterval(function(){updateChart()}, updateInterval); 		
+	} else {	
+		$(this).html('Play');
+		clearInterval(interval);
+	}
+	flag = !flag;
+});
+</script>

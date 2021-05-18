@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpClientModule,HttpHeaders} from '@angular/common/http';
-import { NotesModel } from '../models/NotesModel';
+import { Text } from '../models/TextModel';
 
 
 @Injectable({
@@ -16,15 +16,15 @@ export class NotesService {
   GetNotes(){
     return this.http.get(this.path + this.notes);
   }
-  PostNotesModel(notes: NotesModel){
+  PostNotesModel(text: Text){
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
         Authorization: 'my-auth-token'
       })
     };
-    let body = JSON.stringify(notes)
+    let body = JSON.stringify(text)
     return this.http.post(this.path + this.notes, body,httpOptions).subscribe();
-    
+  
   }
 }

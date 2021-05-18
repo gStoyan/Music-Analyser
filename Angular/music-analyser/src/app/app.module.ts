@@ -12,7 +12,7 @@ import {InputTextModule} from 'primeng/inputtext';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import { ListComponent } from './list/list.component';
 import { DrawComponent } from './draw/draw.component';
-import { BlockComponent } from './block/block.component';
+import { MidiComponent } from './midi/midi.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,7 @@ import { BlockComponent } from './block/block.component';
     NotesComponent,
     ListComponent,
     DrawComponent,
-    BlockComponent
+    MidiComponent
   ],
   imports: [
     FormsModule,

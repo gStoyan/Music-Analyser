@@ -12,11 +12,13 @@ import { timer } from 'rxjs';
 export class DrawComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private blockServices: BlocksService) { }
+  public isClicked = false;
+  public pauseInterval = 50000;
   private router : Router
     ngOnInit() {
   let x = 0;
 	let dataPoints = [];
-
+  let dataPoints1 = [1,2,3,4,5,6,7]
   let Blocks: Object
     this.blockServices.GetBlocks()
     .subscribe(data=>{
@@ -32,12 +34,16 @@ export class DrawComponent implements OnInit {
         },
         backgroundColor: "Grey",
         labelFontColor: "White",
-        axisX:{                     
+        toolTip: {
+          fontColor: "red",
+          Content: "{x} : {y}"
+        },
+        axisX:{                    
           margin: 3,             
           lineThickness: 0,
           tickThickness: 0          
         },
-        axisY:{       
+        axisY:{      
           
           hoverBorderColor: "Black",         
           margin: 3,            
@@ -55,17 +61,21 @@ export class DrawComponent implements OnInit {
           scaleStepWidth: 1,
           fill:false
         }],
-        slider: {
-          minimum: 0,
-          maximum: 100
+        navigator: {
+          data: [{
+            dataPoints: dataPoints1
+          }],
+          slider: {
+            minimum: 0,
+            maximum: 5
+          }
         }
         
       });
       let i = 0;
         chart.render();
         updateChart(i); 
-    function updateChart(i: number) {	
-     
+    function updateChart(i: number) {	     
       let yStart = Blocks[i].yStart as Number
       let yEnd = Blocks[i].yEnd as Number
       let name = Blocks[i].name as string
@@ -73,7 +83,7 @@ export class DrawComponent implements OnInit {
       let time =  Blocks[i].time as number
       let pause =  Blocks[i].pause as number
       
-      dataPoints.push( { y: [yStart,yEnd], label: name,fillColor: color, x:x++})   
+      dataPoints.push( { y: [yStart,yEnd], label: name,color: color, x:x++})   
       if(i>50){
         dataPoints.splice(0, 1)
       }     

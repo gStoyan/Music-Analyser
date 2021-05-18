@@ -8,6 +8,6 @@ namespace MusicAnalyser.Infrastructure.NotesExtensions
 {
     public interface INotesCreator
     {
-        List<Note> ParseCsv(List<string> content);
+        List<Note> CreateNotes(List<string> content);
     }
 }

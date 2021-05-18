@@ -28,7 +28,7 @@ namespace MusicAnalyser.Tests.NotesTests
             var fileReader = new FileReader();
             //Act
             var lines = fileReader.ReadFile(this.path);
-            var notes = notesCreator.ParseCsv(lines);
+            var notes = notesCreator.CreateNotes(lines);
             //Assert           
             notes.Count.Should().BeGreaterThan(0);
         }

@@ -30,7 +30,7 @@ namespace MusicAnalyser.Controllers
         public IEnumerable<Block> Get()
         {
             string[] lines = System.IO.File.ReadAllLines(this.path);
-            var notes = notesCreator.ParseCsv(lines.ToList());
+            var notes = notesCreator.CreateNotes(lines.ToList());
 
             return this.blockCreator.CreateBlocks(notes);
         }

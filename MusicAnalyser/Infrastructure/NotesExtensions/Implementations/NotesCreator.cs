@@ -14,7 +14,7 @@ namespace MusicAnalyser.Infrastructure.NotesExtensions.Implementations
         {
             this.noteTimeCalculator = new NotesTimeCalculator();
         }
-        public List<Note> ParseCsv(List<string> content)
+        public List<Note> CreateNotes(List<string> content)
         {
             List<string> notesOnNames = new List<string>();
             List<string> notesOffNames = new List<string>();
